@@ -105,14 +105,20 @@ export default class Home extends Vue {
   }
 
   forgivenString(str: string) {
+    // I suspect there’s an easier way to do this
     return str
       .toLowerCase()
       .replace('.', '')
       .replace(',', '')
+      .replace('ă', 'a')
+      .replace('å', 'a')
       .replace('ç', 'c')
       .replace('ē', 'e')
       .replace('é', 'e')
+      .replace('ñ', 'n')
       .replace('ó', 'o')
+      .replace('ș', 's')
+      .replace('ú', 'o')
       .trim()
   }
 
