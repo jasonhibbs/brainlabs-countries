@@ -1,0 +1,12 @@
+// Layout ——————————————————————————————————————————————————————————————
+
+:root {
+  --layout-measure: #{em(640)};
+  --layout-base: calc(100% - 2rem);
+}
+
+.layout {
+  width: var(--layout-base);
+  max-width: var(--layout-measure);
+  margin: 0 auto;
+}
