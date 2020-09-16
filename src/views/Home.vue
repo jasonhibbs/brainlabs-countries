@@ -2,7 +2,11 @@
 
   main
 
-    p Good luck, Sam.
+    template(v-if="streak < 2")
+      p Good luck, Sam.
+
+    template(v-else)
+      p #[span.emoji 🔥] Nice one Sam, your streak is {{ streak }}!
 
     form(
       v-if="country"
@@ -28,10 +32,10 @@
           span Check
 
     template(v-if="correct === true")
-      p.result 🎉 That’s right!
+      p.result #[span.emoji 🎉] That’s right!
 
     template(v-if="correct === false")
-      p.result 😞 Oops, it’s {{ country.capital }}
+      p.result #[span.emoji 😞] Oops, it’s {{ country.capital }}
 
 
 </template>
@@ -50,6 +54,7 @@ export default class Home extends Vue {
   countries: CountryData[] = []
   country: CountryData | null = null
   correct: boolean | null = null
+  streak = 0
 
   // Lifecycle
 
@@ -74,6 +79,12 @@ export default class Home extends Vue {
     this.correct =
       this.forgivenString(this.answer) ===
       this.forgivenString(this.country.capital)
+
+    if (this.correct) {
+      this.streak++
+    } else {
+      this.streak = 0
+    }
 
     setTimeout(() => {
       this.startNewQuestion()
@@ -130,6 +141,11 @@ main {
   max-width: rem(400);
 }
 
+.emoji {
+  display: inline-block;
+  margin-right: em(4);
+}
+
 label {
   display: block;
 }
@@ -145,6 +161,8 @@ label {
 
   input,
   button {
+    appearance: none;
+    margin: 0;
     font-size: rem(16);
     line-height: (20/16);
     padding: rem(8) rem(12);

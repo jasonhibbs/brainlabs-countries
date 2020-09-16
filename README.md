@@ -1,5 +1,9 @@
 # countries
 
+A developer exercise for guessing the capitals of countries.
+
+[Test yourself](https://sams-country-capitals-quiz.netlify.app/)
+
 ## Project setup
 ```
 yarn install
